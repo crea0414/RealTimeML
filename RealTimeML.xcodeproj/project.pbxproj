@@ -13,6 +13,8 @@
 		AD81158327BE7F2C007176D3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD81158127BE7F2C007176D3 /* Main.storyboard */; };
 		AD81158527BE7F2F007176D3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AD81158427BE7F2F007176D3 /* Assets.xcassets */; };
 		AD81158827BE7F2F007176D3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AD81158627BE7F2F007176D3 /* LaunchScreen.storyboard */; };
+		AD81159227C33543007176D3 /* ModelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD81159127C33543007176D3 /* ModelViewController.swift */; };
+		AD81159527C342C3007176D3 /* MobileNet.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = AD81159427C342C3007176D3 /* MobileNet.mlmodel */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		AD81158427BE7F2F007176D3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AD81158727BE7F2F007176D3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AD81158927BE7F2F007176D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AD81159127C33543007176D3 /* ModelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelViewController.swift; sourceTree = "<group>"; };
+		AD81159427C342C3007176D3 /* MobileNet.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = MobileNet.mlmodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +63,10 @@
 				AD81157B27BE7F2C007176D3 /* AppDelegate.swift */,
 				AD81157D27BE7F2C007176D3 /* SceneDelegate.swift */,
 				AD81157F27BE7F2C007176D3 /* ViewController.swift */,
+				AD81159127C33543007176D3 /* ModelViewController.swift */,
 				AD81158127BE7F2C007176D3 /* Main.storyboard */,
 				AD81158427BE7F2F007176D3 /* Assets.xcassets */,
+				AD81159427C342C3007176D3 /* MobileNet.mlmodel */,
 				AD81158627BE7F2F007176D3 /* LaunchScreen.storyboard */,
 				AD81158927BE7F2F007176D3 /* Info.plist */,
 			);
@@ -138,6 +144,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD81159227C33543007176D3 /* ModelViewController.swift in Sources */,
+				AD81159527C342C3007176D3 /* MobileNet.mlmodel in Sources */,
 				AD81158027BE7F2C007176D3 /* ViewController.swift in Sources */,
 				AD81157C27BE7F2C007176D3 /* AppDelegate.swift in Sources */,
 				AD81157E27BE7F2C007176D3 /* SceneDelegate.swift in Sources */,
