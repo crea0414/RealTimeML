@@ -13,12 +13,15 @@ class ViewController: UIViewController {
 
     
     private let session = AVCaptureSession()
-    private let videoDataOutput = AVCaptureVideoDataOutput()
+    let videoDataOutput = AVCaptureVideoDataOutput()
     private let videoDataOutputQueue = DispatchQueue(label: "VideoDataOutput", qos: .userInitiated, attributes: [], autoreleaseFrequency: .workItem)
     
     var bufferSize : CGSize = .zero
     var rootLayer:CALayer! = nil
-    private var previewLayer : AVCaptureVideoPreviewLayer! = nil
+    var connection: AVCaptureConnection {
+        return videoDataOutput.connection(with: .video)!
+    }
+    var previewLayer : AVCaptureVideoPreviewLayer! = nil
     
     @IBOutlet var previewView: UIView!
     
@@ -78,8 +81,13 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate{
         }
         
         // d). setup output connection
-        let connection = videoDataOutput.connection(with: .video)
-        connection?.isEnabled = true
+        if connection.isVideoOrientationSupported{
+            print(String("isVideoOrientationSupported support: \(avOrientationString(orientation: connection.videoOrientation))"))
+//            connection.videoOrientation = .landscapeRight
+            
+        }
+        connection.isEnabled = true
+//        connection?.videoOrientation = .portrait  
         
         // e). Get device properties with lock and try error hamdling
         do {
@@ -99,7 +107,9 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate{
         previewLayer = AVCaptureVideoPreviewLayer(session: session)
         // b). setup preview layer size with video gravity property.
         previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-        
+        if let check = previewLayer.connection?.videoOrientation {
+            print(String("Check layer'orientation : \(avOrientationString(orientation:check))"))
+        }
         /// 5). Config previewView layer to root layer (CALayer)
         rootLayer = previewView.layer
         previewLayer.frame = rootLayer.bounds
@@ -118,7 +128,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate{
     public func exifOrientationFromDeviceOrientation() -> CGImagePropertyOrientation {
         let curDeviceOrientation = UIDevice.current.orientation
         let exifOrientation: CGImagePropertyOrientation
-        
         switch curDeviceOrientation {
         case UIDeviceOrientation.portraitUpsideDown:  // Device oriented vertically, home button on the top
             exifOrientation = .left
@@ -132,5 +141,42 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate{
             exifOrientation = .up
         }
         return exifOrientation
+    }
+    
+    public func exifOrientationFromDeviceOrientation2() -> CGImagePropertyOrientation {
+        let curDeviceOrientation = UIDevice.current.orientation
+        let exifOrientation: CGImagePropertyOrientation
+        switch curDeviceOrientation {
+        case UIDeviceOrientation.portraitUpsideDown:  // Device oriented vertically, home button on the top
+            exifOrientation = .left
+        case UIDeviceOrientation.landscapeLeft:       // Device oriented horizontally, home button on the right
+            exifOrientation = .upMirrored
+        case UIDeviceOrientation.landscapeRight:      // Device oriented horizontally, home button on the left
+            exifOrientation = .down
+        case UIDeviceOrientation.portrait:            // Device oriented vertically, home button on the bottom
+            exifOrientation = .up
+        default:
+            exifOrientation = .up
+        }
+        return exifOrientation
+    }
+    
+    func avOrientationString(orientation:AVCaptureVideoOrientation)->String{
+        let result: String
+        let resultWithRaw: String
+        switch orientation{
+        case AVCaptureVideoOrientation.portrait:
+            result = "portrait"
+        case AVCaptureVideoOrientation.landscapeRight:
+            result = "landscapeRight"
+        case AVCaptureVideoOrientation.landscapeLeft:
+            result = "landscapeLeft"
+        case AVCaptureVideoOrientation.portraitUpsideDown:
+            result = "portraitUpsideDown"
+        default:
+            result = "??"
+        }
+        resultWithRaw = String("\(result): \(orientation.rawValue)")
+        return resultWithRaw
     }
 }

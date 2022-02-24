@@ -17,8 +17,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mHs-D8-agR" userLabel="centerView">
-                                <rect key="frame" x="0.0" y="105.33333333333331" width="428" height="820.66666666666674"/>
+                                <rect key="frame" x="64.666666666666686" y="313.66666666666669" width="299" height="299.00000000000006"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="299" id="36E-tA-Dfp"/>
+                                    <constraint firstAttribute="width" constant="299" id="pYG-4v-Lys"/>
+                                </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VBn-hJ-Mqf" userLabel="LabelView">
                                 <rect key="frame" x="170.33333333333334" y="44" width="87.666666666666657" height="40.666666666666657"/>
@@ -37,19 +41,45 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="TqB-aL-RQD" userLabel="OrientaionLabel">
+                                <rect key="frame" x="193.33333333333334" y="622.66666666666663" width="41.333333333333343" height="61"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Tk-v7-wEn" userLabel="DeviceOrientation">
+                                        <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dv9-0r-HI6" userLabel="AVCaptureOrientation">
+                                        <rect key="frame" x="0.0" y="20.333333333333371" width="41.333333333333336" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iva-ec-5Nt" userLabel="ImageOrientation">
+                                        <rect key="frame" x="0.0" y="40.666666666666742" width="41.333333333333336" height="20.333333333333329"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="mHs-D8-agR" secondAttribute="trailing" id="9pu-lp-5fi"/>
-                            <constraint firstAttribute="bottom" secondItem="mHs-D8-agR" secondAttribute="bottom" id="ChT-Tp-AfE"/>
-                            <constraint firstItem="mHs-D8-agR" firstAttribute="top" secondItem="VBn-hJ-Mqf" secondAttribute="bottom" constant="20.670000000000002" id="MWi-Fr-NeO"/>
-                            <constraint firstItem="mHs-D8-agR" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Xg4-jd-0Z2"/>
+                            <constraint firstItem="mHs-D8-agR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JuS-bf-MyK"/>
                             <constraint firstItem="VBn-hJ-Mqf" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="cOe-5Z-HcS"/>
                             <constraint firstItem="VBn-hJ-Mqf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dZl-Pd-lLs"/>
+                            <constraint firstItem="mHs-D8-agR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="drR-uF-aRv"/>
+                            <constraint firstItem="TqB-aL-RQD" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rYc-lC-tIH"/>
+                            <constraint firstItem="TqB-aL-RQD" firstAttribute="top" secondItem="mHs-D8-agR" secondAttribute="bottom" constant="10" id="yR9-Lk-3fz"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="AVCaptureOrientation" destination="Dv9-0r-HI6" id="hp5-Cj-rpn"/>
+                        <outlet property="DeviceOrientationLabel" destination="3Tk-v7-wEn" id="teJ-IC-Msk"/>
+                        <outlet property="ImageOrientationLabel" destination="iva-ec-5Nt" id="sEm-YG-tJ1"/>
                         <outlet property="classLabel" destination="d4w-wD-CVJ" id="OIu-e2-9hx"/>
                         <outlet property="confidenceLabel" destination="9u3-Bq-CNA" id="cir-4a-Sbd"/>
                         <outlet property="previewView" destination="mHs-D8-agR" id="sgN-Zc-0Mt"/>
